@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 import joblib
 import numpy as np
-from pydantic import BaseModel, PositiveFloat
+from pydantic import BaseModel, PositiveFloat, NonNegativeFloat
 import pandas as pd
 
 ML_MODEL = joblib.load("./tariff_model.joblib")
@@ -18,7 +18,7 @@ class CostFeatures(BaseModel):
     lead_time_days: int
     defect_rate: PositiveFloat
     base_cost: PositiveFloat
-    tariff_rate: PositiveFloat
+    tariff_rate: NonNegativeFloat
     year: int
     country_origin: str
     hs_code: str
@@ -40,9 +40,7 @@ def predict(features: dict) -> float:
 @api.post("/predict_cost", response_model=Prediction)
 def predict_cost(data: CostFeatures) -> Prediction:
     """
-    Predicts the unit price of real estate (in 10,000 New Taiwan Dollars
-    per Ping) based on the distance (in meters) from the closest Mass
-    Rapid Transit station.
+    Predicts the landed cost of the shipment based on the input parameters.
     """
     prediction = predict(data.dict())
     return Prediction(predicted_cost=prediction)
