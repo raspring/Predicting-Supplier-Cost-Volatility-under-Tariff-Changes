@@ -1,0 +1,15 @@
+INFO     test_app:test_app.py:23 Starting test_predict_cost
+INFO     httpx:_client.py:1025 HTTP Request: POST http://testserver/predict_cost "HTTP/1.1 200 OK"
+INFO     test_app:test_app.py:28 test_predict_cost passed successfully
+INFO     test_app:test_app.py:31 Starting test_missing_field
+INFO     httpx:_client.py:1025 HTTP Request: POST http://testserver/predict_cost "HTTP/1.1 422 Unprocessable Entity"
+INFO     test_app:test_app.py:36 test_missing_field correctly returned 422
+INFO     test_app:test_app.py:39 Starting test_negative_shipping_cost
+INFO     httpx:_client.py:1025 HTTP Request: POST http://testserver/predict_cost "HTTP/1.1 422 Unprocessable Entity"
+INFO     test_app:test_app.py:44 test_negative_shipping_cost correctly returned 422
+INFO     test_app:test_app.py:47 Starting test_negative_tariff_rate
+INFO     httpx:_client.py:1025 HTTP Request: POST http://testserver/predict_cost "HTTP/1.1 422 Unprocessable Entity"
+INFO     test_app:test_app.py:52 test_negative_tariff_rate correctly returned 422
+INFO     test_app:test_app.py:55 Starting test_invalid_datatype_for_floats
+INFO     httpx:_client.py:1025 HTTP Request: POST http://testserver/predict_cost "HTTP/1.1 422 Unprocessable Entity"
+INFO     test_app:test_app.py:60 test_invalid_datatype_for_floats correctly returned 422

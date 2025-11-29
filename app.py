@@ -42,5 +42,6 @@ def predict_cost(data: CostFeatures) -> Prediction:
     """
     Predicts the landed cost of the shipment based on the input parameters.
     """
-    prediction = predict(data.dict())
+    #prediction = predict(data.dict())
+    prediction = predict(data.model_dump())
     return Prediction(predicted_cost=prediction)
