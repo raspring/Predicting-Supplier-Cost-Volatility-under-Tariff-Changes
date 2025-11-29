@@ -1,6 +1,6 @@
 Run successfully with python version 3.13.5 and the requirements located in this repository
 
-This will use a linear regression to predict the total landed cost of various shipments based on paramters including the tariff rate.
+This will use a linear regression to predict the total landed cost of various shipments based on parameters including the tariff rate.
 
 fyi api is a bit finnicky on the input data types - I got hung up on plain text " vs hypertext " for like 30 min.  Here is example input to the model
 
