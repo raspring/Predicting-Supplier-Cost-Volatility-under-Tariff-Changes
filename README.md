@@ -14,3 +14,5 @@ fyi api is a bit finnicky on the input data types - I got hung up on plain text 
   "country_origin": "India",
   "hs_code": "722490"
 }
+
+Add a simple user interface - you will see if you navigate to url http://127.0.0.1:8000/home/ when hosting locally.  The front end interface controls user inputs to ensure correct data types etc.  
