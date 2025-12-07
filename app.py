@@ -3,6 +3,7 @@ import joblib
 import numpy as np
 from pydantic import BaseModel, PositiveFloat, NonNegativeFloat
 import pandas as pd
+from fastapi.staticfiles import StaticFiles
 
 ML_MODEL = joblib.load("./tariff_model.joblib")
 
@@ -12,6 +13,8 @@ api_description = """
 PredictingSupplierCostVolatilityApp allows you to predict the total landed cost for shipments with various parameters including the tariff rate.
 """
 api = FastAPI(title=api_title, description=api_description)
+
+api.mount("/home", StaticFiles(directory="static", html=True), name="static")
 
 class CostFeatures(BaseModel):
     shipping_cost: PositiveFloat
