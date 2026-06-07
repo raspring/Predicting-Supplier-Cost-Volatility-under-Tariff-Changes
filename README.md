@@ -1,9 +1,24 @@
-Run successfully with python version 3.13.5 and the requirements located in this repository
+## Predicting Supplier Cost Volatility App
 
-This will use a linear regression to predict the total landed cost of various shipments based on parameters including the tariff rate.
+Uses a linear regression model to predict the total landed cost of shipments based on supply chain parameters including tariff rate.
 
-fyi api is a bit finnicky on the input data types - I got hung up on plain text " vs hypertext " for like 30 min.  Here is example input to the model
+### Running the app
 
+```bash
+pip install -r requirements.txt
+uvicorn app:api --reload
+```
+
+- Web UI: http://localhost:8000/home — form-based interface with input validation
+- Interactive API docs: http://localhost:8000/docs
+
+### API
+
+`POST /predict_cost` — returns a predicted landed cost.
+
+Example request body:
+
+```json
 {
   "shipping_cost": 277.112640,
   "lead_time_days": 24,
@@ -14,5 +29,17 @@ fyi api is a bit finnicky on the input data types - I got hung up on plain text 
   "country_origin": "India",
   "hs_code": "722490"
 }
+```
 
-Add a simple user interface - you will see if you navigate to url http://127.0.0.1:8000/home/ when hosting locally.  The front end interface controls user inputs to ensure correct data types etc.  
+> Note: use straight quotes (`"`) not curly/smart quotes (`"`) when sending requests manually.
+
+### Testing
+
+```bash
+pytest                  # unit tests
+locust -f locustfile.py # load tests (app must be running)
+```
+
+### Requirements
+
+Tested with Python 3.13.5. See `requirements.txt`.
