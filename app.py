@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
 import joblib
 import numpy as np
 from pydantic import BaseModel, PositiveFloat, NonNegativeFloat
@@ -15,6 +16,10 @@ PredictingSupplierCostVolatilityApp allows you to predict the total landed cost 
 api = FastAPI(title=api_title, description=api_description)
 
 api.mount("/home", StaticFiles(directory="static", html=True), name="static")
+
+@api.get("/")
+def root():
+    return RedirectResponse(url="/home")
 
 class CostFeatures(BaseModel):
     shipping_cost: PositiveFloat
